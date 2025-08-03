@@ -1,6 +1,14 @@
 {
   "name": "shakib/license-verify",
   "description": "License verification package",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Shakibul Islam",
+      "email": "diu.shakib@gmail.com"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "Shakib\\LicenseVerify\\": "src/"

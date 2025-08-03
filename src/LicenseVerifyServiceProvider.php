@@ -1,15 +1,26 @@
 <?php
 
 namespace Shakib\LicenseVerify;
+
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Foundation\Application;
+use Shakib\LicenseVerify\Http\Middleware\LicenseCheck;
 
 class LicenseVerifyServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
-        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+        // Laravel 12 এ middleware append করতে bootstrap callback use করো
+        if ($this->app instanceof Application) {
+            $this->app->afterResolving(Middleware::class, function (Middleware $middleware) {
+                $middleware->append(LicenseCheck::class);
+            });
+        }
+    }
 
-        // API Routes
-        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+    public function register(): void
+    {
+        // Optional: config publish, binding, etc.
     }
 }
