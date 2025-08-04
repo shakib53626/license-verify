@@ -23,14 +23,15 @@ class LicenseVerifyServiceProvider extends ServiceProvider
 
     }
 
-    protected function appendIfNotExists(Middleware $middleware, string $class): void
+    protected static function appendIfNotExists(Middleware $middleware, string $class): void
     {
-        // Reflect existing middleware stack
-        $reflection = new \ReflectionProperty($middleware, 'middleware');
+        $reflection = new \ReflectionProperty($middleware, 'global');
         $reflection->setAccessible(true);
+
         $current = $reflection->getValue($middleware);
 
         if (!in_array($class, $current, true)) {
+            // Append the middleware
             $middleware->append($class);
         }
     }
