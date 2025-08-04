@@ -12,6 +12,8 @@ class LicenseCheck
         $excludedPaths = [
             'api/activate-license',
             'api/reset-license',
+            'api/install-module',
+            'api/uninstall-module'
         ];
 
         $currentDomain = $request->getHost();
