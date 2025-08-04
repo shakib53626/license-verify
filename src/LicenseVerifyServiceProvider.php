@@ -11,20 +11,27 @@ class LicenseVerifyServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
+        if ($this->app instanceof Application) {
+            $this->app->afterResolving(Middleware::class, function (Middleware $middleware) {
+                $this->appendIfNotExists($middleware, LicenseCheck::class);
+            });
+        }
+
         // Load web and api routes
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
 
-        // Laravel 12: Append global middleware dynamically
-        if ($this->app instanceof Application) {
-            $this->app->afterResolving(Middleware::class, function (Middleware $middleware) {
-                $middleware->append(LicenseCheck::class);
-            });
-        }
     }
 
-    public function register(): void
+    protected function appendIfNotExists(Middleware $middleware, string $class): void
     {
-        //
+        // Reflect existing middleware stack
+        $reflection = new \ReflectionProperty($middleware, 'middleware');
+        $reflection->setAccessible(true);
+        $current = $reflection->getValue($middleware);
+
+        if (!in_array($class, $current, true)) {
+            $middleware->append($class);
+        }
     }
 }
