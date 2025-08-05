@@ -1,11 +1,11 @@
 <?php
 
-namespace Shakib\LicenseVerify;
+namespace Centralora\LicenseVerify;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Middleware;
-use Shakib\LicenseVerify\Http\Middleware\LicenseCheck;
+use Centralora\LicenseVerify\Http\Middleware\LicenseCheck;
 
 class LicenseVerifyServiceProvider extends ServiceProvider
 {

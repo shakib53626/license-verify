@@ -1,5 +1,5 @@
 <?php
 
 return [
-    \Shakib\LicenseVerify\Http\Middleware\LicenseCheck::class,
+    \Centralora\LicenseVerify\Http\Middleware\LicenseCheck::class,
 ];

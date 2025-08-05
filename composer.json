@@ -1,23 +1,23 @@
 {
-  "name": "shakib/license-verify",
+  "name": "centralora/license-verify",
   "description": "License verification package",
   "type": "library",
   "license": "MIT",
   "authors": [
     {
-      "name": "Shakibul Islam",
-      "email": "diu.shakib@gmail.com"
+      "name": "Centralora",
+      "email": "info@centralora.com"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Shakib\\LicenseVerify\\": "src/"
+      "Centralora\\LicenseVerify\\": "src/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Shakib\\LicenseVerify\\LicenseVerifyServiceProvider"
+        "Centralora\\LicenseVerify\\LicenseVerifyServiceProvider"
       ]
     }
   },

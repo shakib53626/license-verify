@@ -1,6 +1,6 @@
 <?php
 
-namespace Shakib\LicenseVerify\Http\Middleware;
+namespace Centralora\LicenseVerify\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
